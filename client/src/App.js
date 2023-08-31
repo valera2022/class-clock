@@ -4,7 +4,7 @@ import NavBar from './Navbar';
 import { Routes,Route } from 'react-router-dom';
 import Home from './Home';
 import { UserProvider } from './context/user';
-
+import Signup from './Signup';
 
 function App() {
   return (
@@ -13,6 +13,8 @@ function App() {
        <NavBar/>
        <Routes>
         <Route exact path="/" element={<Home/>} />
+        <Route exact path="/signup" element={<Signup/>} />
+        <Route exact path="/login" element={<Login/>} />
 
        </Routes>
      </UserProvider>
