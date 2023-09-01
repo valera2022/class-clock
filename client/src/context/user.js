@@ -4,7 +4,7 @@ import React from "react";
 const UserContext = React.createContext();
 
 function UserProvider({children}){
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState(null)
 
     useEffect(()=>{
         fetch("/me")
