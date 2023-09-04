@@ -36,16 +36,17 @@ function Signup (){
       })
       .then(res=> res.json())
       .then(data=> {
-           if(!username.errors){
+           if(!data.errors){
              signup(data)
-             navigate("/")
+            //  navigate("/")
            }
            else {
             setName("")
             setPassword("")
             setUsername("")
             setPasswordConfirmation("")
-            const errors = data.errors.map(e=><li>{e}</li>) 
+            // {<li>{data.exeption}</li>}
+            const errors = data.errors.map(e => <li>{e}</li>) 
             setErrorsList(errors)
            }
       })
@@ -62,12 +63,12 @@ function Signup (){
         <h1>Signup</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <input required type="text" name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
+            <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
           </div>
           <br></br>
           <div>
             <label for="username">Username</label>
-            <input required type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} />
+            <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} />
           </div>
           <br></br>
           <div>
@@ -85,6 +86,9 @@ function Signup (){
   
   
         </form>
+        <ul>
+            {errorsList}
+        </ul>
   
       </div>)
 
