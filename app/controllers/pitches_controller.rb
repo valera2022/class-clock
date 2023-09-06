@@ -1,5 +1,6 @@
 class PitchesController < ApplicationController
     before_authorize :authorize
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
         pitches = current_user.pitches
@@ -7,6 +8,8 @@ class PitchesController < ApplicationController
     
     end
     def create 
+        pitch = current_user.pitches.create!(strong_params)
+        if pitch.valid? render json: command
     
     end
 
@@ -26,6 +29,7 @@ class PitchesController < ApplicationController
         User.find_by(id: session[:user_id])
     
     end
+   
 
     def strong_params 
        params.permit(:name,:pitch_average_speed)
