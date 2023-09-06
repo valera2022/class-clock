@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2023_08_31_010005) do
   create_table "user_pitches", force: :cascade do |t|
     t.string "user_id"
     t.string "pitch_id"
+    t.string "note"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

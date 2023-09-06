@@ -2,15 +2,19 @@ import React,{useContext} from "react";
 import { UserContext } from "./context/user";
 
 function Home (){
-    const {user} = useContext(UserContext)
-    if(!user || user.error){
+    const {user,loggedin} = useContext(UserContext)
+    if(loggedin){
+        console.log(loggedin)
+        
         return (
-            <h3>Login or Signup</h3>
+            <h1>{user.username} Home</h1>
         )
+       
     }
     else{
+        
         return (
-            <h1>{user.name} Home</h1>
+            <h3>Login or Signup</h3>
         )
 
     }

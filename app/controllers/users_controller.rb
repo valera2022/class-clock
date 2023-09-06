@@ -2,9 +2,8 @@ class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
     def create 
         user = User.create!(strong_params)
-        user.valid? 
-            session[:user_id] = user.id
-            render json: user
+        user.valid? session[:user_id] = user.id
+        render json: user
     end
 
     def show 
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
     private
 
     def strong_params 
-        params.permit(:name,:username,:password,:password_confirmation,:user )
+        params.permit(:name,:username,:password,:password_confirmation )
     
     end
     

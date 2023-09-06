@@ -3,6 +3,7 @@ class CreateUserPitches < ActiveRecord::Migration[6.1]
     create_table :user_pitches do |t|
       t.string :user_id
       t.string :pitch_id
+      t.string :note
 
       t.timestamps
     end

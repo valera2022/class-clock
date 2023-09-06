@@ -38,7 +38,7 @@ function Signup (){
       .then(data=> {
            if(!data.errors){
              signup(data)
-            //  navigate("/")
+             navigate("/")
            }
            else {
             setName("")
