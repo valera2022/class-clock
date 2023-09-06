@@ -14,6 +14,13 @@ class PitchesController < ApplicationController
     end
 
     def show 
+        user = current_user.commands.find_by(id: params[:id])
+        if user 
+            render json: user
+        else
+            render json: {error: "Not Found"}, status: :unauthorized
+        
+        end
     
     end
 
