@@ -1,20 +1,24 @@
 class PitchesController < ApplicationController
-    before_authorize :authorize
+    before_action :authorize
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
-        pitches = current_user.pitches
+        
+        pitches = Pitch.all
         render json: pitches
-    
+     
     end
     def create 
-        pitch = current_user.pitches.create!(strong_params)
-        if pitch.valid? render json: command
+        # byebug
+       
+         pitch = Pitch.create!(strong_params)
+         pitch.valid? render json: pitch
+        
     
     end
 
     def show 
-        user = current_user.commands.find_by(id: params[:id])
+        user = current_user.pitches.find_by(id: params[:id])
         if user 
             render json: user
         else
@@ -25,25 +29,31 @@ class PitchesController < ApplicationController
     end
 
     def destroy 
+        # byebug
+        user = current_user.pitches.find_by(id: params[:id])
+        user.destroy()
     
     end
     def update 
+        # byebug
+       
+        pitch = current_user.pitches.find_by(id: params[:id])
+        updated = pitch.update(
+          name: params[:name],
+          pitch_average_speed: params[:pitch_average_speed]
+        )
+
+        render json: pitch
     
     end
 
     private
-    def current_user 
-        User.find_by(id: session[:user_id])
-    
-    end
+   
    
 
     def strong_params 
        params.permit(:name,:pitch_average_speed)
     end
 
-    def authorize 
-        return render json: {error: "Not Authorized"},status: :unauthorized unless session.include? :user_id
     
-    end
 end

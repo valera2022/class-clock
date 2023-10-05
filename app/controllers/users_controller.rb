@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    def index
+        users = User.all
+        render json:users
+    
+    end
+    
+    
     def create 
         user = User.create!(strong_params)
         user.valid? session[:user_id] = user.id
@@ -15,6 +22,7 @@ class UsersController < ApplicationController
        end
     
     end
+    
    
     private
 

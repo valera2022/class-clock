@@ -1,5 +1,7 @@
 class Pitch < ApplicationRecord
-    has_many  :user_pitches
-    has_many :users, through: :user_pitches
+    validates :name,:pitch_average_speed, presence: true
+    validates :name, uniqueness: true
+    has_many  :notes
+    has_many :users, through: :notes
  
 end
