@@ -52,7 +52,7 @@ class PitchesController < ApplicationController
    
 
     def strong_params 
-       params.permit(:name,:pitch_average_speed)
+       params.permit(:name,:pitch_average_speed,:history)
     end
 
     

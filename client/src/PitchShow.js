@@ -28,30 +28,18 @@ export default function PitchShow() {
 
 console.log(id)
 
-const userIdList = []
-let pitch = pitches.find(pitch =>pitch.id == parseInt(id) )
-console.log(pitch.notes)
 
- pitch.notes.map(p=>{userIdList.push(p.user_id)})
+let pitch = pitches.find(pitch =>pitch.id == parseInt(id) )
+
+
  console.log(pitch)
 
 
 // )
 
-console.log(userIdList)
 
-  let show = false
-  userIdList.map((id)=>{
-    if(user.id !== id){
-      //  preventLoop(false)
-      show = false
-    }
-    else{
-      //  preventLoop(true)
-      show = true
-    }
 
-  })
+  
 
   
   
@@ -59,6 +47,9 @@ console.log(userIdList)
 
  
   return (<div>
+    Name: {pitch.name}
+    
+   <p> Fact: {pitch.history}</p>
  {pitch.notes.map(note=> <NoteCard note={note}/> )}
   
   

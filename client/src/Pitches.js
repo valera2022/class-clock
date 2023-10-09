@@ -4,10 +4,10 @@ import { UserContext } from './context/user'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Pitches({handlePreData}) {
+export default function Pitches({handlePreData,setIsPopupOpen,isPopupOpen,openPopup}) {
   const {pitches,loggedin} = useContext(UserContext)
   console.log(pitches)
-  const pitchList = pitches.map((pitch)=><Pitch pitch={pitch} handlePreData={handlePreData}/>)
+  const pitchList = pitches.map((pitch)=><Pitch openPopup={openPopup}setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} pitch={pitch} handlePreData={handlePreData}/>)
   if (loggedin){
     return (<div>
       <ul><li>{pitchList}</li></ul>

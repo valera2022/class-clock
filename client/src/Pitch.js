@@ -3,10 +3,12 @@ import { UserContext } from './context/user'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 
-export default function Pitch({pitch,handlePreData,handleButton}) {
+export default function Pitch({pitch,handlePreData,handleButton,setIsPopupOpen,isPopupOpen,openPopup}) {
   const {deletePitch,userPitch} = useContext(UserContext)
+  
   const navigate = useNavigate()
   console.log(pitch)
   const handleDelete = (e)=>{
@@ -14,11 +16,21 @@ export default function Pitch({pitch,handlePreData,handleButton}) {
     console.log(pitch.id)
     deletePitch(pitch.id)
   }
+  console.log(isPopupOpen)
 
+  
   const handleEdit= (e) => {
      e.preventDefault()
      console.log(pitch.id)
      handlePreData(pitch)
+   
+
+    
+      openPopup()
+      console.log(isPopupOpen)
+  
+
+  
     
      
      navigate(`/pitches/${pitch.id}/edit`)

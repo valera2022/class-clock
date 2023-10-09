@@ -3,7 +3,7 @@ class NotesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-        user = current_user.user_pitches
+        user = current_user.notes
 
         render json: user
     
@@ -24,9 +24,21 @@ class NotesController < ApplicationController
     end
 
     def destroy
+       
         note = current_user.notes.find_by(id: params[:id])
-        note.destroy()
+        note.destroy
 
+    
+    end
+    def update 
+       
+        note = current_user.notes.find_by(id: params[:id])
+        updated = note.update(
+            content: params[:content]
+            
+          )
+        
+          render json: note
     
     end
 

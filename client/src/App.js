@@ -13,9 +13,22 @@ import { useContext, useState } from 'react';
 import PitchShow from './PitchShow'
 import AddNote from './AddNote';
 
+import EditNote from './EditNote';
+
 
 function App() {
   const [preEditData, setPreEditData] = useState("")
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+};
+
+const closePopup = () => {
+    setIsPopupOpen(false);
+};
+
 
   
 
@@ -38,12 +51,12 @@ function App() {
         <Route exact path="/" element={<Home/>} />
         <Route exact path="/signup" element={<Signup/>} />
         <Route exact path="/login" element={<Login/>} />
-        <Route exact path="/pitches" element={<Pitches handlePreData={handlePreData} />}  />
+        <Route exact path="/pitches" element={<Pitches handlePreData={handlePreData} setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} openPopup={openPopup} />}  />
         <Route exact path="/pitches/new" element={<PitchForm />} />
         <Route exact path="/pitches/:id/edit" element={<EditPitch preEditData={preEditData}/>}  />
         <Route exact path="/pitches/:id" element={<PitchShow  />}  />
         <Route exact path="/pitches/:id/notes/new" element={<AddNote />}  />
-
+        <Route exact path="/notes/:id/edit" element={<EditNote setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen}/>}  />
 
        </Routes>
      </UserProvider>

@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2023_08_31_010005) do
   create_table "pitches", force: :cascade do |t|
     t.string "name"
     t.string "pitch_average_speed"
+    t.text "history"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

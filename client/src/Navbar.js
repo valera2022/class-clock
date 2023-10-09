@@ -19,11 +19,31 @@ function NavBar() {
 
   if (loggedin){
     return (
-      <div>
-        <h1>Hello {user.username}</h1>
-        <br/>
-        <button onClick={logMeOut}>Logout</button> 
-      </div>
+      // <div>
+      //   <h1>Hello {user.username}</h1>
+      //   <br/>
+      //   <button onClick={logMeOut}>Logout</button> 
+      // </div>
+      <div style={{backgroundColor:"#00cc99"}}>
+      <NavLink
+            to="/"
+            end
+            style={({ isActive, isPending }) => {
+              return {
+                fontWeight: isActive ? "bold" : "",
+                margin: "0 10px 10px",
+                width: "60px",
+                padding: "10px",
+                
+                color: isActive ? "red" : "black",
+                textDecoration: isActive ? "underline" : "none"
+              };
+            }}
+            
+          className="NavLink" onClick={logMeOut}>
+           LogOut
+          </NavLink>
+          </div>
     )
 
   }
