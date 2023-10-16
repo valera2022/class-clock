@@ -32,6 +32,7 @@ class NotesController < ApplicationController
     end
     def update 
        
+       
         note = current_user.notes.find_by(id: params[:id])
         updated = note.update(
             content: params[:content]

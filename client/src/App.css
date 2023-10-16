@@ -37,14 +37,8 @@
   }
 }
 
-.divNote{
-  border-style: solid;
- 
-  border-width: 1px;
-  border-color: green;
 
 
-}
 
 .popup {
   display: none;
@@ -63,4 +57,44 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.add{
+  margin-top:120px;
+  margin-bottom:auto  
+}
+
+.home{
+  background-color: #99cccc;
+  height:700px
+}
+.pitches{
+  background-color: #99cccc;
+  height:700px
+}
+.show-page{
+  background-color: #99cccc;
+  height:800px;
+  margin-bottom: 20px
+  
+
+}
+
+.divNote{
+  display:grid;
+  border-style: solid;
+  border-top-width: none;
+  border-right-width: large;
+  border-bottom-width: medium;
+  border-left-width: medium;
+ 
+  /* border-width: 1px; */
+  /* border-color: green; */
+  box-shadow: 0 0 0 1px rgb(114, 112, 112);
+  border: outset #8e2fed;
+  margin-bottom: auto;
+  margin-top:-200px;
+  font-family: 'Amatic SC', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
 }

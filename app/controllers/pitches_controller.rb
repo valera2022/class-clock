@@ -29,7 +29,7 @@ class PitchesController < ApplicationController
     end
 
     def destroy 
-        # byebug
+        byebug
         user = current_user.pitches.find_by(id: params[:id])
         user.destroy()
     

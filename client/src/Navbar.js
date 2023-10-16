@@ -24,7 +24,7 @@ function NavBar() {
       //   <br/>
       //   <button onClick={logMeOut}>Logout</button> 
       // </div>
-      <div style={{backgroundColor:"#00cc99"}}>
+      <div style={{backgroundColor:"#ccccff"}}>
       <NavLink
             to="/"
             end
@@ -41,7 +41,7 @@ function NavBar() {
             }}
             
           className="NavLink" onClick={logMeOut}>
-           LogOut
+           Log me out
           </NavLink>
           </div>
     )

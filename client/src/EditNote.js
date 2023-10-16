@@ -1,67 +1,70 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import { UserContext } from './context/user'
-import { useContext } from 'react'
-import { useParams } from 'react-router-dom'
 
-export default function EditNote({ setIsPopupOpen, isPopupOpen }) {
-    const [content, setContent] = useState()
-    const { loggedin, patchNote } = useContext(UserContext)
-    const params = useParams()
-    console.log(params.id)
-    console.log(isPopupOpen)
-
-    const formData = {
-        content: content,
-        id: params.id
-
+function EditNote({nota}) {
+    const [show, setShow] = useState(false);
+    const [content,setContent] = useState(nota.content)
+    const {patchNote} = useContext(UserContext)
+   
+      console.log(nota)
+      console.log(content)
+    
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    let formData = {
+        content:content,
+        id: nota.id
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e){
         e.preventDefault()
-
-        console.log(formData)
+        console.log(content)
+        console.log(nota)
         patchNote(formData)
         
+
     }
 
-    //  return (
-    //     isOpen && (
-    //         <div className="popup">
-    //             <div className="popup-content">
-    //                 <p>This is a popup!</p>
-    //                 <button onClick={onClose}>Close</button>
-    //             </div>
-    //         </div>
-    //     )
-    // );
+    return (
+        <>
+            {/* <button onClick={handleShow}>Edit</button> */}
+            <Button size="sm" onClick={handleShow} variant="outline-primary">Edit</Button>{' '}
+            {/* <Button variant="primary" onClick={handleShow}>
+        Launch static backdrop modal
+      </Button> */}
 
-
-
-
-
-
-    if (loggedin) {
-        return (
-           
-                <div className="popup">
-                    <div  className="popup-content" >
-                        <h1>Edit Note</h1>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <label >name</label>
-                                <input type="text" name="content" value={content} onChange={e => setContent(e.target.value)} />
-                            </div>
-
-                            <button type="submit">Submit</button>
-
-
-
-                        </form>
-
-                    </div>
-                </div>
-            )
-    }
-    else { return <h1>You need to login to use this feature</h1> }
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Note</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form id="editm"className="w-full max-w-sm" onSubmit={handleSubmit}>
+                        <div className="flex items-center border-b border-teal-500 py-2">
+                            <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" value={content} onChange={e=> setContent(e.target.value)} type="text"  aria-label="Note" />
+                           
+                           
+                        </div>
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    {/* <button className="" form="editm"></button> */}
+                    <Button type="submit" onClick={handleClose} form="editm"  variant="primary">Update</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
 }
+
+export default EditNote

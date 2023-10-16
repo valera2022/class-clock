@@ -11,8 +11,11 @@ function Home (){
         console.log(loggedin)
         
         return (
-        <div>
-            <h1>{user.username} Home</h1>
+        <div className="home">
+            <p>{user.username}'s Home</p>
+            <p>Welcome! In this Website you can add MlB pitches and let  other peole know about it. The other users can leave a note about the pitch you created.
+                feel free to explore, click on the button pitches belows
+            </p>
             <Link to="/pitches">
               <button  type="button" className="btn btn-success" >Pitches</button>
            </Link>

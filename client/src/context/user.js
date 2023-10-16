@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 const UserContext = React.createContext();
@@ -10,6 +12,7 @@ function UserProvider({children}){
     const [loggedin,setLoggedin] = useState(false)
     const [pitches,setPitches] = useState([])
     const [note,setNote] = useState({})
+  
     // const params = useParams()
   
     
@@ -59,6 +62,7 @@ function UserProvider({children}){
         .then(data=>{
             if(!data.error){
                 setPitches([...pitches,data])
+               
 
             }
             else{
@@ -109,33 +113,7 @@ function UserProvider({children}){
          
     }
 
-    function patchPitch(formData){
-        console.log(formData)
-        fetch(`/pitches/${formData.id}`,{
-            method: "PATCH",
-            headers:{
-                "Content-type": "application/json",
-
-            },
-            body: JSON.stringify({
-                name: formData.name,
-                pitch_average_speed: formData.pitch_average_speed
-            })
-
-        })
-        .then(res=> res.json())
-        .then(data=>{ console.log(data)
-            // debugger;
-            let throws = pitches.map(pitch => {if (pitch.id === data.id){
-                return data}
-            else{ return pitch}
-            })
-            setPitches(throws)
-            
-            
-           
-        })
-    }
+   
 
     // function userPitch(){
     //     fetch("/user_pitches")
@@ -207,6 +185,7 @@ function UserProvider({children}){
     }
 
     function patchNote(formData){
+        console.log(formData)
         fetch(`/notes/${formData.id}`,{
             method: "PATCH",
             headers:{
@@ -235,7 +214,7 @@ function UserProvider({children}){
         })
       
              let updatedPitch = {...pitch,notes: editedNote}
-             let updatedArray = pitches.map(pitch => pitch.id == data.pitch_id? updatedPitch : pitch)
+             let updatedArray = pitches.map(pitch => pitch.id === data.pitch_id? updatedPitch : pitch)
             
        
         setPitches(updatedArray)
@@ -248,7 +227,7 @@ function UserProvider({children}){
     }
 
     return(
-        <UserContext.Provider value={{user,login,logout,signup,loggedin,pitches,postPitches,pitches,deletePitch,patchPitch,note,postUserPitches,deleteNote,patchNote}}>
+        <UserContext.Provider value={{user,login,logout,signup,loggedin,postPitches,pitches,note,postUserPitches,deleteNote,patchNote}}>
             {children}
        </UserContext.Provider>
     );
