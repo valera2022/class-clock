@@ -12,6 +12,7 @@ import EditPitch from './EditPitch';
 
 import PitchShow from './PitchShow'
 import AddNote from './AddNote';
+import Comments from './Comments';
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -51,6 +52,7 @@ function App() {
         <Route exact path="/pitches/:id" element={<PitchShow />}  />
         <Route exact path="/pitches/:id/notes/new" element={<AddNote />}  />
         <Route exact path="/notes/:id/edit" element={<EditNote />}  />
+        <Route exact path="/comments" element={<Comments/>}/>
 
        </Routes>
      </UserProvider>

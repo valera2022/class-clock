@@ -1,5 +1,5 @@
 class PitchesController < ApplicationController
-    before_action :authorize
+    # before_action :authorize
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
@@ -12,7 +12,8 @@ class PitchesController < ApplicationController
         # byebug
        
          pitch = Pitch.create!(strong_params)
-         pitch.valid? render json: pitch
+         pitch.valid? render json: pitch 
+      
         
     
     end

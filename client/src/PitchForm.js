@@ -7,7 +7,8 @@ export default function PitchForm() {
     const [name,setName] = useState("")
     const [averageSpeed,setAverageSpeed] = useState("")
     const [fact,setFact]= useState("")
-    const {postPitches,loggedin} = useContext(UserContext)
+    const {postPitches,loggedin,pitchErrors} = useContext(UserContext)
+    
     
     function handleSubmit(e){
         e.preventDefault()
@@ -17,6 +18,7 @@ export default function PitchForm() {
             history: fact
         }
         postPitches(formData)
+        
         
 
 
@@ -47,6 +49,10 @@ export default function PitchForm() {
   
   
          </form>
+         <ul>
+            {pitchErrors}
+        </ul>
+         
         
          </div>
   )}

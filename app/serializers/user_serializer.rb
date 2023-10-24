@@ -1,4 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id,:name,:username
-  has_many :notes
+
+  has_many :pitches, through: :notes
 end

@@ -43,6 +43,61 @@ function NavBar() {
           className="NavLink" onClick={logMeOut}>
            Log me out
           </NavLink>
+          <NavLink
+            to="/pitches"
+            end
+            style={({ isActive, isPending }) => {
+              return {
+                fontWeight: isActive ? "bold" : "bold",
+                margin: "0 10px 10px",
+                width: "60px",
+                padding: "10px",
+                
+                color: isActive ? "red" : "black",
+                
+                textDecoration: isActive ? "underline" : "none"
+              };
+            }}
+            
+          className="NavLink" >
+          Pitches
+          </NavLink>
+          <NavLink
+            to="/"
+            end
+            style={({ isActive, isPending }) => {
+              return {
+                fontWeight: isActive ? "bold" : "",
+                margin: "0 10px 10px",
+                width: "60px",
+                padding: "10px",
+                
+                color: isActive ? "blue" : "black",
+                textDecoration: isActive ? "underline" : "none"
+              };
+            }}
+            
+          className="NavLink" >
+          Home
+          </NavLink>
+          <NavLink
+            to="/comments"
+            end
+            style={({ isActive, isPending }) => {
+              return {
+                fontWeight: isActive ? "bold" : "",
+                margin: "0 10px 10px",
+                width: "60px",
+                padding: "10px",
+                
+                color: isActive ? "blue" : "black",
+                textDecoration: isActive ? "underline" : "none"
+              };
+            }}
+            
+          className="NavLink" >
+          Notes
+          </NavLink>
           </div>
     )
 

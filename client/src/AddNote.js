@@ -1,55 +1,59 @@
 import React, { useContext } from 'react'
 import { useState } from 'react'
 import { UserContext } from './context/user'
-import { useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 export default function AddNote() {
-    const [nota,setNota] = useState([])
-    const {loggedin,postUserPitches} = useContext(UserContext)
+    const [nota, setNota] = useState([])
+    const { loggedin, postUserPitches, noteErrors } = useContext(UserContext)
     const params = useParams()
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
 
-    function handleSubmit(e){
+
+    function handleSubmit(e) {
         e.preventDefault()
         const formData = {
             content: nota,
             pitch_id: params.id
-            
+
         }
         postUserPitches(formData)
     }
-    if(loggedin){
+    if (loggedin) {
         return (
-            
-          
-      
+
+
+
             <div>
-                   <h1>Add Note</h1>
-                   <form onSubmit={handleSubmit}>
-                        <div>
-                       <label >Note</label>
-                      <input type="text" name="name" value={nota} onChange={e => setNota(e.target.value)} />
-                     </div>
+                <h1>Add Note</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label >Note</label>
+                        <input type="text" name="name" value={nota} onChange={e => setNota(e.target.value)} />
+                    </div>
                     <br></br>
-                   
-                     <button type="submit">Submit</button>
-                   
-            
-            
-                    </form>
-                  
-             </div>
-       
-             
-       
-        )}
-        else{
-          return <h1>You need to login to use this feature</h1>
-        }
+
+                    <button type="submit">Submit</button>
+
+
+
+                </form>
+                <ul>
+                    {noteErrors}
+                </ul>
+
+            </div>
+
+
+
+        )
     }
+    else {
+        return <h1>You need to login to use this feature</h1>
+    }
+}
