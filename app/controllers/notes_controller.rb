@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
     # before_action :authorize
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+   
 
     def index
         user = current_user.notes
@@ -34,12 +34,12 @@ class NotesController < ApplicationController
        
        
         note = current_user.notes.find_by(id: params[:id])
-        updated = note.update(
+        updated = note.update!(
             content: params[:content]
             
           )
         
-          render json: note
+          note.valid? render json: note
     
     end
 

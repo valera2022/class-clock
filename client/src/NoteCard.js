@@ -7,17 +7,17 @@ import EditNote from './EditNote'
 import Button from 'react-bootstrap/Button';
 
 export default function NoteCard({note}) {
-    const {user,deleteNote} = useContext(UserContext)
+    const {user,deleteNote,pitches} = useContext(UserContext)
     const navigate = useNavigate()
-
+    const{id} = useParams()
+    
    
  
-  
-
-    // let upperData = {
-    //   noteId:note.id,
-    //   paraId: id
-    // }
+  console.log(note)
+    let pitch = pitches.find(pitch =>pitch.id === parseInt(id) )
+    
+    
+    
 
     const handleClickDelete= (e)=> {
         e.preventDefault()
@@ -25,15 +25,18 @@ export default function NoteCard({note}) {
         deleteNote(note)
     
       }
-      // const handleClickEdit= (e)=>{
-       
-      //   e.preventDefault()
-      //   navigate(`/notes/${note.id}/edit`)
-      // }
+     
      
   return (
     <div className="divNote">
       <ul>{note.content}</ul>
+      <div>
+      {pitch.users.map((user)=> {if (user.id === note.user_id ){
+   
+      return <p> by {user.username}</p>
+      
+    }})}
+      </div>
       <div>
       {note.user_id == user.id ?   <Button size="sm" onClick={handleClickDelete} variant="outline-danger">Delete</Button> : null }
       {note.user_id == user.id ? <EditNote nota={note}/> : null }

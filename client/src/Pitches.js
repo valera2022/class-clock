@@ -12,7 +12,7 @@ export default function Pitches() {
     return (
     <div className='pitches'>
       <ul><li>{pitchList}</li></ul>
-      {/* <h2>{pitchList}</h2> */}
+
       
       <Link to="/pitches/new">
        <button  type="button" className="btn btn-success" >+ Add Pitch</button>

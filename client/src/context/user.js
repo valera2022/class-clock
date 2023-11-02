@@ -14,9 +14,10 @@ function UserProvider({ children }) {
     const [note, setNote] = useState({})
     const [pitchErrors, setPitchErrors] = useState()
     const [noteErrors, setNoteErrors] = useState()
+    const [updatedNoteErrors,setUpdatedNoteErrors] = useState(null)
     const navigate = useNavigate()
 
-    // const params = useParams()
+    
 
 
 
@@ -124,11 +125,7 @@ function UserProvider({ children }) {
 
 
 
-    // function userPitch(){
-    //     fetch("/user_pitches")
-    //     .then(res => res.json())
-    //     .then(data => setNote(data))
-    // }
+   
 
     function postUserPitches(note) {
         console.log(note)
@@ -139,21 +136,28 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
+               
                 if (!data.errors) {
 
+                    
 
-                    // setDoctorData(updatedArray)
+
+                    
                     let pitch = pitches.find(pitch => pitch.id === data.pitch_id)
                     let updatedNotes = [...pitch.notes, data]
                     let updatedPitch = { ...pitch, notes: updatedNotes }
                     let updatedArray = pitches.map(pitch => pitch.id === data.pitch_id ? updatedPitch : pitch)
-
+                  
+                    
                     setPitches(updatedArray)
+                    setUser({
+                        ...user, pitches: [...user.pitches, updatedPitch]
+                        })
                     navigate(`/pitches/${data.pitch_id}`)
 
                 }
                 else {
+                    console.log(data)
                     const mistakes = data.errors.map(e => <li>{e}</li>)
                     console.log(mistakes)
                     setNoteErrors(mistakes)
@@ -166,6 +170,7 @@ function UserProvider({ children }) {
     }
 
     function deleteNote(note) {
+         console.log(note)
         fetch(`/notes/${note.id}`, {
 
             method: "DELETE",
@@ -186,7 +191,11 @@ function UserProvider({ children }) {
                 let updatedPitch = { ...pitch, notes: filteredNotes }
                 let updatedPitches = pitches.map(pit => pit.id === pitch.id ? updatedPitch : pit)
                 console.log(updatedPitches)
+                // filter user.pitches by comparing the note pitch_id with the  pitch.id from the pitch itself.
                 setPitches(updatedPitches)
+                setUser({
+                    ...user, pitches: user.pitches.filter(pitch=> pitch.id !== note.pitch_id )
+                    })
 
                 console.log(pitches)
             }
@@ -215,8 +224,11 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
 
+
                 console.log(data)
 
+                if(!data.errors){
+                    
                 let pitch = pitches.find(pitch => pitch.id === data.pitch_id)
 
                 let editedNote = pitch.notes.map(note => {
@@ -235,6 +247,16 @@ function UserProvider({ children }) {
 
                 setPitches(updatedArray)
 
+                }
+                else{
+                    console.log(data)
+                    const mistakes = data.errors.map(e => <li>{e}</li>)
+                    console.log(mistakes)
+                    setUpdatedNoteErrors(mistakes)
+
+                }
+
+
 
 
             })
@@ -243,7 +265,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedin, postPitches, pitches, note, postUserPitches, deleteNote, patchNote, pitchErrors, noteErrors }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedin, postPitches, pitches, note, postUserPitches, deleteNote, patchNote, pitchErrors, noteErrors,updatedNoteErrors }}>
             {children}
         </UserContext.Provider>
     );

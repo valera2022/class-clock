@@ -8,10 +8,9 @@ import { UserContext } from './context/user'
 function EditNote({nota}) {
     const [show, setShow] = useState(false);
     const [content,setContent] = useState(nota.content)
-    const {patchNote} = useContext(UserContext)
+    const {patchNote,updatedNoteErrors} = useContext(UserContext)
    
-      console.log(nota)
-      console.log(content)
+     
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -22,8 +21,7 @@ function EditNote({nota}) {
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(content)
-        console.log(nota)
+        
         patchNote(formData)
         
 
@@ -31,11 +29,9 @@ function EditNote({nota}) {
 
     return (
         <>
-            {/* <button onClick={handleShow}>Edit</button> */}
+          
             <Button size="sm" onClick={handleShow} variant="outline-primary">Edit</Button>{' '}
-            {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
+           
 
             <Modal
                 show={show}
@@ -59,10 +55,13 @@ function EditNote({nota}) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    {/* <button className="" form="editm"></button> */}
-                    <Button type="submit" onClick={handleClose} form="editm"  variant="primary">Update</Button>
+                    {updatedNoteErrors?   <ul>{updatedNoteErrors}</ul> : null }
+                  
+                    
+                    <Button type="submit" onClick={updatedNoteErrors == null? null : handleClose} form="editm"  variant="primary">Update</Button>
                 </Modal.Footer>
             </Modal>
+           
         </>
     );
 }

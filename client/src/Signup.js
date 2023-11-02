@@ -9,7 +9,7 @@ function Signup (){
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList,setErrorsList] = useState([])
     const {signup} = useContext(UserContext);
-    // let params = useParams()
+
     let navigate = useNavigate()
    
   
@@ -26,8 +26,8 @@ function Signup (){
         password: password,
         username: username,
         password_confirmation: passwordConfirmation,
-        // doctor_id: parseInt(params.doctor_id, 10)
-      }//put params from url
+       
+      }
       
       fetch("/signup",{
         method: "POST",
@@ -45,7 +45,7 @@ function Signup (){
             setPassword("")
             setUsername("")
             setPasswordConfirmation("")
-            // {<li>{data.exeption}</li>}
+           
             const errors = data.errors.map(e => <li>{e}</li>) 
             setErrorsList(errors)
            }

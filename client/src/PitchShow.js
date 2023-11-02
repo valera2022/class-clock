@@ -16,19 +16,14 @@ export default function PitchShow() {
   const navigate =  useNavigate()
   const {id} = useParams()
  
-  // const [renderButton,setRenderButton]= useState(true)
-  // function preventLoop(value){
-
-  //   setRenderButton(value)
-  // }
+  
 
   console.log(pitches)
-  // let u = doctorData.filter(doc=> doc.id == params.id).map(dc => dc.patients)
-  // console.log(u)
+  
   function handleClick(e){
     e.preventDefault()
     
-    // return <AddNote/>
+   
     navigate(`/pitches/${id}/notes/new`)
 
   }
@@ -44,7 +39,7 @@ let pitch = pitches.find(pitch =>pitch.id == parseInt(id) )
  console.log(pitch)
 
 
-// )
+
 
 
 
@@ -57,18 +52,17 @@ let pitch = pitches.find(pitch =>pitch.id == parseInt(id) )
       }
   
 
- 
-  return (   
+ if(pitch){  return (   
   <div className='show-page' border="primary"style={size} >
  
-    {/* <img variant="top" className="image"src="https://heavy.com/wp-content/uploads/2019/03/scherzer-e1551749684164.jpg?quality=65&strip=all" /> */}
+   
     <div className='body'>
     <img variant="top" className="image"src="https://heavy.com/wp-content/uploads/2019/03/scherzer-e1551749684164.jpg?quality=65&strip=all" />
       <h2  className='title'>Name: {pitch.name}</h2>
       <div className='card-text' >
          <p>Fact: {pitch.history}</p>
       </div>
-      {/* <Button variant="primary">Go somewhere</Button> */}
+      
     </div>
     
   
@@ -81,23 +75,14 @@ let pitch = pitches.find(pitch =>pitch.id == parseInt(id) )
       
     
    </div>
-</div>)
+</div>)}
+
+else{
+  <h1>Loading..</h1>
+}
    
     
-//   <div>
-//     {/* { <AddNote/>} */}
-//     <h2>Name: {pitch.name}</h2>
-    
-    
-//    <p> Fact: {pitch.history}</p>
-//  <p>{pitch.notes.map(note=> <NoteCard  note={note}/> )}</p>
-  
 
- 
-//   <button onClick={handleClick}>AddNote</button>
- 
-
-//   </div>)
  
   
   

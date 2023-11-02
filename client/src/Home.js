@@ -8,7 +8,7 @@ function Home (){
 
   
     if(loggedin){
-        console.log(loggedin)
+        
         
         return (
         <div className="home">

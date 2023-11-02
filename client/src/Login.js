@@ -16,8 +16,8 @@ function Login (){
           password: password,
           username: username
        
-          // doctor_id: parseInt(params.doctor_id, 10)
-        }//put params from url
+          
+        }
         
         fetch("/login",{
           method: "POST",
@@ -35,8 +35,7 @@ function Login (){
               setPassword("")
               setUsername("")
              
-              // {<li>{data.exeption}</li>}
-            //   const errors = data.errors
+            
               setError(data.error)
              }
         })

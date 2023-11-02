@@ -13,17 +13,13 @@ function NavBar() {
      })
      .then( ()=>{
           logout()
-          // navigate("/")
+         
      })
   }
 
   if (loggedin){
     return (
-      // <div>
-      //   <h1>Hello {user.username}</h1>
-      //   <br/>
-      //   <button onClick={logMeOut}>Logout</button> 
-      // </div>
+     
       <div style={{backgroundColor:"#ccccff"}}>
       <NavLink
             to="/"
@@ -96,7 +92,7 @@ function NavBar() {
             }}
             
           className="NavLink" >
-          Notes
+          My Pitches
           </NavLink>
           </div>
     )

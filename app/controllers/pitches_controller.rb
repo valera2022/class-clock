@@ -1,6 +1,6 @@
 class PitchesController < ApplicationController
     # before_action :authorize
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+   
 
     def index 
         
