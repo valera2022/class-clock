@@ -41,7 +41,7 @@ class PitchesController < ApplicationController
         pitch = current_user.pitches.find_by(id: params[:id])
         updated = pitch.update(
           name: params[:name],
-          pitch_average_speed: params[:pitch_average_speed]
+          average_speed: params[:average_speed]
         )
 
         render json: pitch
@@ -53,7 +53,7 @@ class PitchesController < ApplicationController
    
 
     def strong_params 
-       params.permit(:name,:pitch_average_speed,:history)
+       params.permit(:name,:average_speed,:history)
     end
 
     

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useState } from 'react'
 import { UserContext } from './context/user'
-import { useNavigate } from 'react-router-dom'
+
 
 export default function PitchForm() {
     const [name,setName] = useState("")
@@ -14,7 +14,7 @@ export default function PitchForm() {
         e.preventDefault()
         const formData = {
             name: name,
-            pitch_average_speed: averageSpeed,
+            average_speed: averageSpeed,
             history: fact
         }
         postPitches(formData)

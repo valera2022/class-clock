@@ -1,14 +1,14 @@
 import React from 'react'
 import { UserContext } from './context/user'
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 import { useParams } from 'react-router-dom'
 import EditNote from './EditNote'
 import Button from 'react-bootstrap/Button';
 
 export default function NoteCard({note}) {
     const {user,deleteNote,pitches} = useContext(UserContext)
-    const navigate = useNavigate()
+  
     const{id} = useParams()
     
    
@@ -38,8 +38,8 @@ export default function NoteCard({note}) {
     }})}
       </div>
       <div>
-      {note.user_id == user.id ?   <Button size="sm" onClick={handleClickDelete} variant="outline-danger">Delete</Button> : null }
-      {note.user_id == user.id ? <EditNote nota={note}/> : null }
+      {note.user_id === user.id ?   <Button size="sm" onClick={handleClickDelete} variant="outline-danger">Delete</Button> : null }
+      {note.user_id === user.id ? <EditNote nota={note}/> : null }
       
       </div>
     

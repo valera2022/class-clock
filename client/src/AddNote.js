@@ -2,17 +2,15 @@ import React, { useContext } from 'react'
 import { useState } from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+
 
 export default function AddNote() {
     const [nota, setNota] = useState([])
     const { loggedin, postUserPitches, noteErrors } = useContext(UserContext)
     const params = useParams()
-    const [show, setShow] = useState(false);
+   
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  
 
 
     function handleSubmit(e) {

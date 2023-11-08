@@ -14,7 +14,7 @@ export default function EditPitch({ preEditData }) {
     e.preventDefault()
     const formData = {
       name: name,
-      pitch_average_speed: averageSpeed,
+      average_speed: averageSpeed,
       id: preEditData.id
     }
     console.log(formData)

@@ -1,14 +1,14 @@
-import logo from './logo.svg';
+
 import './App.css';
 import NavBar from './Navbar';
 import { Routes,Route } from 'react-router-dom';
 import Home from './Home';
-import { UserContext,UserProvider} from './context/user';
+import { UserProvider} from './context/user';
 import Signup from './Signup';
 import Login from './Login';
 import Pitches from './Pitches';
 import PitchForm from './PitchForm';
-import EditPitch from './EditPitch';
+
 
 import PitchShow from './PitchShow'
 import AddNote from './AddNote';

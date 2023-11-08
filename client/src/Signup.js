@@ -1,7 +1,7 @@
 import React, { useState,useContext } from "react";
 import { UserContext } from "./context/user";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+
 function Signup (){
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")

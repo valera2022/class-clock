@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,7 +11,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState(null)
     const [loggedin, setLoggedin] = useState(false)
     const [pitches, setPitches] = useState([])
-    const [note, setNote] = useState({})
+   
     const [pitchErrors, setPitchErrors] = useState()
     const [noteErrors, setNoteErrors] = useState()
     const [updatedNoteErrors,setUpdatedNoteErrors] = useState(null)
@@ -106,22 +106,7 @@ function UserProvider({ children }) {
 
     }
 
-    function deletePitch(id) {
-        console.log(id)
-        fetch(`/pitches/${id}`, {
 
-            method: "DELETE",
-            headers: {
-                "Content-type": "application/json",
-            },
-        })
-
-        let filtered = pitches.filter(pitch => pitch.id !== id)
-        setPitches(filtered)
-
-        console.log("deleting..")
-
-    }
 
 
 
@@ -265,7 +250,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedin, postPitches, pitches, note, postUserPitches, deleteNote, patchNote, pitchErrors, noteErrors,updatedNoteErrors }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedin, postPitches, pitches, postUserPitches, deleteNote, patchNote, pitchErrors, noteErrors,updatedNoteErrors }}>
             {children}
         </UserContext.Provider>
     );

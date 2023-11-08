@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react'
-import { useState } from 'react'
+
 import { UserContext } from './context/user'
 
 export default function Comments() {

@@ -1,6 +1,6 @@
 import React,{useContext} from "react";
 import { UserContext } from "./context/user";
-import Pitches from "./Pitches";
+
 import { Link } from 'react-router-dom'
 
 function Home (){
